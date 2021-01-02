@@ -8,13 +8,14 @@ scoring_uri = 'http://af889be7-14d8-48e8-9205-0338fe6afdcb.southcentralus.azurec
 # Two sets of data to score, so we get two results back
 data = {"data":
         [
-          {
-          "SepalLengthCm": 5.1,
-          "SepalWidthCm": 3.5,
-          "PetalLengthCm": 1.4,
-          "PetalWidthCm": 0.2
-          }      ]
-    }
+            {
+                "SepalLengthCm": 5.1,
+                "SepalWidthCm": 3.5,
+                "PetalLengthCm": 1.4,
+                "PetalWidthCm": 0.2
+            }
+        ]
+        }
 # Convert to JSON string
 input_data = json.dumps(data)
 with open("data.json", "w") as _f:
@@ -26,5 +27,3 @@ headers = {'Content-Type': 'application/json'}
 # Make the request and display the response
 resp = requests.post(scoring_uri, input_data, headers=headers)
 print(resp.json())
-
-
