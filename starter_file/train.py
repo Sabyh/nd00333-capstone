@@ -26,8 +26,9 @@ if key in ws.datasets.keys():
 def clean_data(data):
     #X = data.drop(['Id', 'Species'], axis=1)
     #y = data['Species']
-    x_df = data.drop(['Id', 'Species'], axis=1)
-    y_df = data['Species']
+    x_df = data.to_pandas_dataframe().dropna()
+    x_df = data.drop('Id', inplace=True, axis=1)
+    y_df = x_df.pop("Species")    
     return x_df, y_df
 
 X, y = clean_data(dataset)
