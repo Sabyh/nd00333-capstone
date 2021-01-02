@@ -9,34 +9,11 @@ scoring_uri = 'http://af889be7-14d8-48e8-9205-0338fe6afdcb.southcentralus.azurec
 data = {"data":
         [
           {
-            "age": 75,
-            "anaemia": 0,
-            "creatinine_phosphokinase": 582,
-            "diabetes": 0,
-            "ejection_fraction": 20,
-            "high_blood_pressure": 1,
-            "platelets": 265000,
-            "serum_creatinine": 1.9,
-            "serum_sodium": 130,
-            "sex": 1,
-            "smoking": 0,
-            "time": "4"
-          },
-          {
-            "age": 55,
-            "anaemia": 0,
-            "creatinine_phosphokinase": 7861,
-            "diabetes": 0,
-            "ejection_fraction": 38,
-            "high_blood_pressure": 0,
-            "platelets": 263358.03,
-            "serum_creatinine": 1.1,
-            "serum_sodium": 136,
-            "sex": 1,
-            "smoking": 0,
-            "time": "6"
-          },
-      ]
+          "SepalLengthCm": 5.1,
+          "SepalWidthCm": 3.5,
+          "PetalLengthCm": 1.4,
+          "PetalWidthCm": 0.2
+          }      ]
     }
 # Convert to JSON string
 input_data = json.dumps(data)
