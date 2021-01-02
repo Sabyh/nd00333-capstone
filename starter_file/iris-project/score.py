@@ -8,6 +8,7 @@ import pickle
 import pandas as pd
 
 test_data_sample = pd.DataFrame(data=[{
+    "Id": 2,
     "SepalLengthCm": 5.1,
     "SepalWidthCm": 3.5,
     "PetalLengthCm": 1.4,
