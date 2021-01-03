@@ -1,6 +1,20 @@
 import requests
 import json
 
+#training_data.to_pandas_dataframe()
+#df.columns
+#test = df[df['Column1']==0]
+#test['digit']
+#test.pop('digit')
+#js = test.to_json()
+#js
+#test.values
+#test.columns
+#js = test.to_json()
+#js
+#y = json.loads(js)
+#y
+
 # URL for the web service, should be similar to:
 # 'http://17fb482f-c5d8-4df7-b011-9b33e860c111.southcentralus.azurecontainer.io/score'
 scoring_uri = 'http://e80f8dc7-ab53-43c2-a442-b6aecda8c95f.southcentralus.azurecontainer.io/score'
