@@ -7,13 +7,15 @@ import os
 import pickle
 import pandas as pd
 
-test_data_sample = pd.DataFrame(data=[{
-    "Id": 2,
-    "SepalLengthCm": 5.1,
-    "SepalWidthCm": 3.5,
-    "PetalLengthCm": 1.4,
-    "PetalWidthCm": 0.2
-}])
+
+print("This will run before coming request to model")
+# test_data_sample = pd.DataFrame(data=[{
+#     "Id": 2,
+#     "SepalLengthCm": 5.1,
+#     "SepalWidthCm": 3.5,
+#     "PetalLengthCm": 1.4,
+#     "PetalWidthCm": 0.2
+# }])
 # import numpy as np
 # import pandas as pd
 # import joblib
