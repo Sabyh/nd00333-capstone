@@ -1,61 +1,50 @@
-from sklearn.linear_model import LogisticRegression
+
 import argparse
 import os
 import numpy as np
-from sklearn.metrics import mean_squared_error
+import glob
+
+from sklearn.linear_model import LogisticRegression
 import joblib
-from sklearn.model_selection import train_test_split
-import pandas as pd
-from azureml.core.run import Run
-from azureml.data.dataset_factory import TabularDatasetFactory
 
-# Retrive current run's information
+from azureml.core import Run
+from utils import load_data
 
+# let user feed in 2 parameters, the dataset to mount or download, and the regularization rate of the logistic regression model
+parser = argparse.ArgumentParser()
+parser.add_argument('--data-folder', type=str, dest='data_folder', help='data folder mounting point')
+parser.add_argument('--regularization', type=float, dest='reg', default=0.01, help='regularization rate')
+args = parser.parse_args()
+
+data_folder = args.data_folder
+print('Data folder:', data_folder)
+
+# load train and test set into numpy arrays
+# note we scale the pixel intensity values to 0-1 (by dividing it with 255.0) so the model can converge faster.
+X_train = load_data(glob.glob(os.path.join(data_folder, '**/train-images-idx3-ubyte.gz'), recursive=True)[0], False) / 255.0
+X_test = load_data(glob.glob(os.path.join(data_folder, '**/t10k-images-idx3-ubyte.gz'), recursive=True)[0], False) / 255.0
+y_train = load_data(glob.glob(os.path.join(data_folder, '**/train-labels-idx1-ubyte.gz'), recursive=True)[0], True).reshape(-1)
+y_test = load_data(glob.glob(os.path.join(data_folder, '**/t10k-labels-idx1-ubyte.gz'), recursive=True)[0], True).reshape(-1)
+
+print(X_train.shape, y_train.shape, X_test.shape, y_test.shape, sep = '\n')
+
+# get hold of the current run
 run = Run.get_context()
-ws = run.experiment.workspace
-found = False
-key = "iris-dataset-kaggle"
-description_text = "famous iris dataset"
 
-if key in ws.datasets.keys(): 
-        found = True
-        dataset = ws.datasets[key] 
+print('Train a logistic regression model with regularization rate of', args.reg)
+clf = LogisticRegression(C=1.0/args.reg, solver="liblinear", multi_class="auto", random_state=42)
+clf.fit(X_train, y_train)
 
-# Split data into train and test set
+print('Predict the test set')
+y_hat = clf.predict(X_test)
 
-def clean_data(data):
-    #X = data.drop(['Id', 'Species'], axis=1)
-    #y = data['Species']
-    x_df = data.to_pandas_dataframe().dropna()
-    x_df = data.drop('Id', inplace=True, axis=1)
-    y_df = x_df.pop("Species")    
-    return x_df, y_df
+# calculate accuracy on the prediction
+acc = np.average(y_hat == y_test)
+print('Accuracy is', acc)
 
-X, y = clean_data(dataset)
+run.log('regularization rate', np.float(args.reg))
+run.log('accuracy', np.float(acc))
 
-x_train, x_test, y_train, y_test = train_test_split(X, y, test_size = 0.2, random_state = 42)
-
-
-def main():
-    # Add arguments to script
-    parser = argparse.ArgumentParser()
-
-    parser.add_argument('--C', type=float, default=1.0, help="Inverse of regularization strength. Smaller values cause stronger regularization")
-    parser.add_argument('--max_iter', type=int, default=100, help="Maximum number of iterations to converge")
-
-    args = parser.parse_args()
-
-    run.log("Regularization Strength: ", np.float(args.C))
-    run.log("Max iterations: ", np.int(args.max_iter))
-
-    model = LogisticRegression(C=args.C, max_iter=args.max_iter).fit(x_train, y_train)
-
-    accuracy = model.score(x_test, y_test)
-    run.log("Accuracy", np.float(accuracy))
-    
-    os.makedirs('outputs', exist_ok=True)
-    joblib.dump(model, 'outputs/model.joblib')
-
-
-if __name__ == '__main__':
-    main()
+os.makedirs('outputs', exist_ok=True)
+# note file saved in the outputs folder is automatically uploaded into experiment record
+joblib.dump(value=clf, filename='outputs/sklearn_mnist_model.pkl')
