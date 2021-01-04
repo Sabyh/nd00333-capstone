@@ -63,27 +63,27 @@ Experiment timeout is set to control the use of resources. Maximum 10 iterations
 <img src="Screenshots/mnist/best-run-models.PNG">
 
 ### Results
-The best performing model after training using AutoML is VotingEnsemble with the Accuracy of 88.49350649350649 %
+The best performing model after training using AutoML is VotingEnsemble with the Accuracy of 0.994110 accuracy.
 
-The models that VotingEnsemble used with it's weight are:
+The other models that are used with VotingEnsemble and there weights are:
 ```
-'ensembled_algorithms': "['LightGBM', 'XGBoostClassifier', 'XGBoostClassifier', 'LightGBM', 'LightGBM', 'RandomForest', 'ExtremeRandomTrees', 'GradientBoosting', 'RandomForest', 'XGBoostClassifier', 'LogisticRegression']"
+'ensembled_algorithms': "['MinMaxScalar SVM', 'MaxAbsScaler SVM', 'stackEnsemble', 'LightGBM', 'StandardScalarWrapper']"
 
-'ensemble_weights': '[0.09090909090909091, 0.09090909090909091, 0.09090909090909091, 0.09090909090909091, 0.09090909090909091, 0.09090909090909091, 0.09090909090909091, 0.09090909090909091, 0.09090909090909091, 0.09090909090909091, 0.09090909090909091]'
+'ensemble_weights': '[0.99994, 0.99993, 0.99985, 0.99956]'
 ```
 
-To improve the model we can use different target metric like AUC_weighted or Recall. We can also try hypertuning the parameters to see if there is any improvement.
+To improve the model we can utilize distinctive objective measurement like AUC_weighted or Recall. We can likewise have a go at hypertuning the boundaries to check whether there is any improvement.
 
-<img src="Screenshots/automl_best_model.png">
-<img src="Screenshots/automl_best_accuracy.png">
+<img src="Screenshots/mnist/automl-best-model.PNG">
+<img src="Screenshots/mnist/automl3.PNG">
 
 **Best Run Id**
 
-<img src="Screenshots/automl_bestrunid.PNG">
+<img src="Screenshots/mnist/best-run-id.PNG">
 
 **Best AutoML Model Registered**
 
-<img src="Screenshots/automl_registered.PNG">
+<img src="Screenshots/mnist/register-model.PNG">
 
 ## Hyperparameter Tuning
 As it is a binary classification problem, the model used for HyperDrive is Logistic Regression. 
