@@ -130,7 +130,7 @@ The endpoint is tested by following way:
 <img src="Screenshots/mnist/model-test2.PNG">
 
 ## Screen Recording
-Link to screencast: [Link](https://youtu.be/fj7Av9YiuiY)
+Link to screencast: [Link](https://drive.google.com/file/d/1avcyJ4_6hJnZEl17i90xy29sxJOck8BQ/view?usp=sharing)
 
 ## Future Improvements
 - Larger dataset can be used to increase data quality
