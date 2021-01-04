@@ -134,5 +134,6 @@ Link to screencast: [Link](https://drive.google.com/file/d/1avcyJ4_6hJnZEl17i90x
 
 ## Future Improvements
 - Larger dataset can be used to increase data quality
-- Different models can also be used with hyperparameter tuning
+- Different parameters can also be used with hyperparameter tuning
 - Feature engineering can be performed using PCA 
+- We can use max pooling to increase accuracy 
