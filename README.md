@@ -20,7 +20,7 @@ Each pixel column in the training set has a name like pixelx, where x is an inte
 
 In this project, Azure AutoML and Hyperdrive will be used to make prediction on MNIST dataset. We will pass our model the image pixels in columns and our model will predict which digit the image pixel represent.
 
-**clinical features:**
+**Clinical features:**
 
 The features are basically pixel values.
 
@@ -59,7 +59,7 @@ automl_config = AutoMLConfig(task='classification',
 ```
 Experiment timeout is set to control the use of resources. Maximum 10 iterations can be run simultaneously to maximize usage. Classification task is performed as the target column digit has values 0-9. Primary metric was Accuracy to test how well our model performed in automl. Featurization is likewise done which naturally scales and standardizes the dataset.
 
-<img src="Screenshots/autoML_run.png">
+<img src="https://github.com/Sabyh/nd00333-capstone/blob/master/Screenshots/mnist/automl-run-status.PNG">
 <img src="Screenshots/automl_experiment.png">
 
 ### Results
