@@ -67,9 +67,9 @@ The best performing model after training using AutoML is VotingEnsemble with the
 
 The other models that are used with VotingEnsemble and there weights are:
 ```
-'ensembled_algorithms': "['MinMaxScalar SVM', 'MaxAbsScaler SVM', 'stackEnsemble', 'LightGBM', 'StandardScalarWrapper']"
+'ensembled_algorithms': "['MinMaxScalar SVM', 'MaxAbsScaler SVM', 'stackEnsemble',  'StandardScalarWrapper']"
 
-'ensemble_weights': '[0.99994, 0.99993, 0.99985, 0.99956]'
+'ensemble_weights': '[0.99993, 0.99992, 0.99985, 0.99956]'
 ```
 
 To improve the model we can utilize distinctive objective measurement like AUC_weighted or Recall. We can likewise have a go at hypertuning the boundaries to check whether there is any improvement.
