@@ -86,47 +86,48 @@ To improve the model we can utilize distinctive objective measurement like AUC_w
 <img src="Screenshots/mnist/register-model.PNG">
 
 ## Hyperparameter Tuning
-As it is a binary classification problem, the model used for HyperDrive is Logistic Regression. 
-- It is easy to understand
-- Trains very easily and faster compared to complex models
+As its a image classification task so we have used convolutional neural network to train it on the image dataset. I have used softmax as a activation function and for loss I have used categorical_crossentropy. 
 
 
 The parameters used for hyperparameter tuning are:
-- Regularization Strength (C) with range 0.1 to 1.0
-    -- Inverse of regularization strength. Smaller values cause stronger regularization
-- Max Iterations (max_iter) with values 50, 100, 150 and 200
-    -- Maximum number of iterations to converge
+- epochs (One Epoch is when an ENTIRE dataset is passed forward and backward through the neural network only ONCE. Since one epoch is too big to feed to the computer at once we divide it in several smaller batches.)
+- batch_size (the number of training examples in one forward/backward pass. The higher the batch size, the more memory space you'll need.)
+- dropout (The term “dropout” refers to dropping out units (both hidden and visible) in a neural network. Simply put, dropout refers to ignoring units (i.e. neurons) during the training phase of certain set of neurons which is chosen at random.)
+- hidden (Number of hidden layers in neural network)
 
-<img src="Screenshots/hyperdrive_run.png">
+<img src="Screenshots/mnist/hyperdrive-1.PNG">
 
 ### Results
-The best Accuracy for the HyperDrive model is 7666666666666667 %
+The best Accuracy for the HyperDrive model is 81%
 The best hyperparameters for this accuracy are:
-- 'Regularization Strength:': 0.5077980350098886
-- 'Max iterations:': 50
+- 'hidden:': 200
+- 'batch-size': 64
+- 'drop-out': 1
+- 'epoch': 50
 
-To improve the model we can use different target metric to get broader perspective. We can also try increasing the range of the hyperparameters to see if there is any improvement.
-<img src="Screenshots/hyperdrive_bestmodel.png">
+To improve the model we can utilize diverse objective measurement to get more extensive point of view. We can likewise take a stab at expanding the scope of the hyperparameters to check whether there is any improvement.
+<img src="Screenshots/mnist/hyperdrive-best-model.PNG">
 
 **Best HyperDrive Model Registered**
 
-<img src="Screenshots/hyperdrive_registered.PNG">
+<img src="Screenshots/mnist/hyperdrive-register-model.PNG">
 
 ## Model Deployment
-The AutoMl model is deployed using Azure Container Instance as a WebService. Best run environment and score.py file is provided to the InferenceConfig.
-Cpu_cores and memory_gb are initialized as 1 for the deployment configuration. The aci service is then created using workspace, aci service name, model, inference config and deployment configuration.
+The AutoMl model is conveyed utilizing Azure Container Instance as a WebService. Best run environment and score.py document is given to the InferenceConfig. 
 
-The model is successfully deployed as a web service and a REST endpoint is created with status Healthy. A scoring uri is also generated to test the endpoint.
+Cpu_cores and memory_gb are instated as 1 for the arrangement design. The aci administration is then made utilizing workspace, aci administration name, model, derivation config and sending arrangement. 
 
-<img src="Screenshots/model_deployment.png">
+The model is effectively sent as a web administration and a REST endpoint is made with status Healthy. A scoring uri is likewise produced to test the endpoint.
 
-<img src="Screenshots/deployed_endpoint.png">
+<img src="Screenshots/mnist/model-deployment.PNG">
 
-The endpoint is tested in 2 ways: 
-- using endpoint.py file which passes 2 data points as json 
-- using 3 random sample data points and to see the actual value and predicted value 
+<img src="Screenshots/mnist/deployed-endpoint.PNG">
 
-<img src="Screenshots/model_test.png">
+The endpoint is tested by following way: 
+- using endpoint.py file which passes 1 data points as json to the scoring uri which return a label indicating which digit it is.
+
+
+<img src="Screenshots/mnist/model-test2.PNG">
 
 ## Screen Recording
 Link to screencast: [Link](https://youtu.be/fj7Av9YiuiY)
