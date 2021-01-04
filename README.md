@@ -1,4 +1,4 @@
-# Heart Failure Prediction using Microsoft Azure
+# MNIST classification using Microsoft Azure
 
 In this capstone project I have took MNIST and iris open source dataset from kaggle and trains it with 2 distinct methods. 
 First utilizing AutoML and afterward utilizing HyperDrive with tuned hyperparameters. The best model will later be conveyed and tried.
