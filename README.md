@@ -20,7 +20,7 @@ Each pixel column in the training set has a name like pixelx, where x is an inte
 
 In this project, Azure AutoML and Hyperdrive will be used to make prediction on MNIST dataset. We will pass our model the image pixels in columns and our model will predict which digit the image pixel represent.
 
-**12 clinical features:**
+**clinical features:**
 
 The features are basically pixel values.
 
