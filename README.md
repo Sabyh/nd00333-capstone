@@ -60,7 +60,7 @@ automl_config = AutoMLConfig(task='classification',
 Experiment timeout is set to control the use of resources. Maximum 10 iterations can be run simultaneously to maximize usage. Classification task is performed as the target column digit has values 0-9. Primary metric was Accuracy to test how well our model performed in automl. Featurization is likewise done which naturally scales and standardizes the dataset.
 
 <img src="https://github.com/Sabyh/nd00333-capstone/blob/master/Screenshots/mnist/automl-run-status.PNG">
-<img src="Screenshots/automl_experiment.png">
+<img src="Screenshots/mnist/best-run-models.PNG">
 
 ### Results
 The best performing model after training using AutoML is VotingEnsemble with the Accuracy of 88.49350649350649 %
