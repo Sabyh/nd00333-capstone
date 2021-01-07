@@ -17,7 +17,7 @@ import json
 
 # URL for the web service, should be similar to:
 # 'http://17fb482f-c5d8-4df7-b011-9b33e860c111.southcentralus.azurecontainer.io/score'
-scoring_uri = 'http://e80f8dc7-ab53-43c2-a442-b6aecda8c95f.southcentralus.azurecontainer.io/score'
+scoring_uri = 'http://4de0afd6-0c1e-422a-895e-26f0600405ab.southcentralus.azurecontainer.io/score'
 
 # Two sets of data to score, so we get two results back
 data = {"data":
